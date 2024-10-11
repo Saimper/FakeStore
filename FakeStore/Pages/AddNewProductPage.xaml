@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FakeStore.Pages.AddNewProductPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AddNewProductPage">
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <!--  Campo para el título del producto  -->
+            <Label FontAttributes="Bold" Text="Título" />
+            <Entry x:Name="ProductTitleEntry" Placeholder="Ingrese el título del producto" />
+
+            <!--  Campo para el precio del producto  -->
+            <Label FontAttributes="Bold" Text="Precio" />
+            <Entry
+                x:Name="ProductPriceEntry"
+                Keyboard="Numeric"
+                Placeholder="Ingrese el precio" />
+
+            <!--  Campo para la descripción del producto  -->
+            <Label FontAttributes="Bold" Text="Descripción" />
+            <Editor
+                x:Name="ProductDescriptionEntry"
+                HeightRequest="100"
+                Placeholder="Ingrese la descripción" />
+
+            <!--  Campo para la URL de la imagen  -->
+            <Label FontAttributes="Bold" Text="URL de la imagen" />
+            <Entry x:Name="ProductImageEntry" Placeholder="Ingrese la URL de la imagen" />
+
+            <!--  Campo para la categoría del producto  -->
+            <Label FontAttributes="Bold" Text="Categoría" />
+            <Picker x:Name="ProductCategoryPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>electronic</x:String>
+                        <x:String>jewelery</x:String>
+                        <x:String>men's clothing</x:String>
+                        <x:String>women's clothing</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!--  Botón para agregar el producto  -->
+            <Button
+                BackgroundColor="#27AE60"
+                Clicked="OnAddProductClicked"
+                Text="Agregar Producto"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

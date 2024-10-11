@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FakeStore.Pages.ProductListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ProductListPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Productos disponibles"
+                TextColor="#34495E" />
+            <CollectionView x:Name="ProductsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="{Binding title}" />
+                            <Label FontSize="Small" Text="{Binding description}" />
+                            <Label FontSize="Small" Text="{Binding category}" />
+                            <Image
+                                HeightRequest="100"
+                                Source="{Binding image}"
+                                WidthRequest="100" />
+                            <Label FontSize="Small" Text="{Binding price, StringFormat='Precio: {0:C}'}" />
+                            <Button
+                                Clicked="OnViewDetailsClicked"
+                                CommandParameter="{Binding .}"
+                                Text="Ver Detalles" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

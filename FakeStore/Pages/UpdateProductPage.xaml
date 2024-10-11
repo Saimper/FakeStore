@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FakeStore.Pages.UpdateProductPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="UpdateProductPage">
+    <VerticalStackLayout>
+        <Label Text="Título" />
+        <Entry x:Name="ProductTitleEntry" />
+
+        <Label Text="Precio" />
+        <Entry x:Name="ProductPriceEntry" Keyboard="Numeric" />
+
+        <Label Text="Descripción" />
+        <Editor x:Name="ProductDescriptionEntry" />
+
+        <Label Text="Imagen URL" />
+        <Entry x:Name="ProductImageEntry" />
+
+        <Label Text="Categoría" />
+        <Picker x:Name="ProductCategoryPicker">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Electronics</x:String>
+                    <x:String>Jewelery</x:String>
+                    <x:String>Men's Clothing</x:String>
+                    <x:String>Women's Clothing</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Button Clicked="OnUpdateProductClicked" Text="Actualizar Producto" />
+
+    </VerticalStackLayout>
+</ContentPage>

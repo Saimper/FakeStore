@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FakeStore.Pages.LimitResultsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="LimitResultsPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Limitar Productos"
+                TextColor="#34495E" />
+
+            <Entry
+                x:Name="LimitEntry"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Keyboard="Numeric"
+                Placeholder="Introduce el límite de productos" />
+
+            <Button
+                Margin="10"
+                Clicked="OnGetLimitedProductsClicked"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Obtener Productos" />
+
+            <CollectionView x:Name="LimitedProductsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="10"
+                            Orientation="Horizontal"
+                            Spacing="10">
+                            <Image
+                                HeightRequest="100"
+                                Source="{Binding image}"
+                                WidthRequest="100" />
+                            <StackLayout>
+                                <Label FontAttributes="Bold" Text="{Binding title}" />
+                                <Label Text="{Binding price, StringFormat='{0:C}'}" TextColor="Green" />
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

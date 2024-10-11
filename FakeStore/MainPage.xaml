@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FakeStore.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                Margin="0,20,0,40"
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center"
+                Text="Fake Store API"
+                TextColor="#2E86C1" />
+
+            <!--  Botón "Ver todos los productos"  -->
+            <Button
+                BackgroundColor="#2E86C1"
+                Clicked="OnGetAllProductsClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Ver todos los productos"
+                TextColor="White" />
+
+
+
+            <!--  Botón "Limitar resultados"  -->
+            <Button
+                BackgroundColor="#48C9B0"
+                Clicked="OnLimitResultsClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Limitar resultados"
+                TextColor="White" />
+
+            <!--  Botón "Ordenar resultados"  -->
+            <Button
+                BackgroundColor="#F5B041"
+                Clicked="OnSortResultsClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Ordenar resultados"
+                TextColor="White" />
+
+            <!--  Botón "Ver todas las categorías"  -->
+            <Button
+                BackgroundColor="#52BE80"
+                Clicked="OnGetAllCategoriesClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Ver todas las categorías"
+                TextColor="White" />
+
+            <!--  Botón "Productos por categoría"  -->
+            <Button
+                BackgroundColor="#AF7AC5"
+                Clicked="OnGetProductsInCategoryClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Productos por categoría"
+                TextColor="White" />
+
+            <!--  Botón "Añadir nuevo producto"  -->
+            <Button
+                BackgroundColor="#F1948A"
+                Clicked="OnAddNewProductClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Añadir nuevo producto"
+                TextColor="White" />
+
+            <!--  Botón "Actualizar un producto"  -->
+            <Button
+                BackgroundColor="#E74C3C"
+                Clicked="OnUpdateProductClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Actualizar un producto"
+                TextColor="White" />
+
+            <!--  Botón "Eliminar un producto"  -->
+            <Button
+                BackgroundColor="#EC7063"
+                Clicked="OnDeleteProductClicked"
+                CornerRadius="25"
+                FontSize="16"
+                HeightRequest="50"
+                Text="Eliminar un producto"
+                TextColor="White" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
