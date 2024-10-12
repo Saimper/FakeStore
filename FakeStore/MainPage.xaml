@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!-- Densing #1 -->
+
     <ScrollView>
         <VerticalStackLayout>
             <Label
@@ -14,90 +16,110 @@
                 Text="Fake Store API"
                 TextColor="#2E86C1" />
 
-            <!--  Botón "Ver todos los productos"  -->
-            <Button
-                BackgroundColor="#2E86C1"
-                Clicked="OnGetAllProductsClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Ver todos los productos"
-                TextColor="White" />
+            <!-- Organización en dos columnas -->
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto,Auto,Auto">
 
+                <!-- Primera fila de botones -->
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="#2E86C1"
+                    Clicked="OnGetAllProductsClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Ver todos los productos"
+                    TextColor="White" />
 
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="#48C9B0"
+                    Clicked="OnLimitResultsClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Limitar resultados"
+                    TextColor="White" />
 
-            <!--  Botón "Limitar resultados"  -->
-            <Button
-                BackgroundColor="#48C9B0"
-                Clicked="OnLimitResultsClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Limitar resultados"
-                TextColor="White" />
+                <!-- Segunda fila de botones -->
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="#F5B041"
+                    Clicked="OnSortResultsClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Ordenar resultados"
+                    TextColor="White" />
 
-            <!--  Botón "Ordenar resultados"  -->
-            <Button
-                BackgroundColor="#F5B041"
-                Clicked="OnSortResultsClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Ordenar resultados"
-                TextColor="White" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="#52BE80"
+                    Clicked="OnGetAllCategoriesClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Ver todas las categorías"
+                    TextColor="White" />
 
-            <!--  Botón "Ver todas las categorías"  -->
-            <Button
-                BackgroundColor="#52BE80"
-                Clicked="OnGetAllCategoriesClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Ver todas las categorías"
-                TextColor="White" />
+                <!-- Tercera fila de botones -->
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    BackgroundColor="#AF7AC5"
+                    Clicked="OnGetProductsInCategoryClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Productos por categoría"
+                    TextColor="White" />
 
-            <!--  Botón "Productos por categoría"  -->
-            <Button
-                BackgroundColor="#AF7AC5"
-                Clicked="OnGetProductsInCategoryClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Productos por categoría"
-                TextColor="White" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="#F1948A"
+                    Clicked="OnAddNewProductClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Añadir nuevo producto"
+                    TextColor="White" />
 
-            <!--  Botón "Añadir nuevo producto"  -->
-            <Button
-                BackgroundColor="#F1948A"
-                Clicked="OnAddNewProductClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Añadir nuevo producto"
-                TextColor="White" />
+                <!-- Cuarta fila de botones -->
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    BackgroundColor="#E74C3C"
+                    Clicked="OnUpdateProductClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Actualizar un producto"
+                    TextColor="White" />
 
-            <!--  Botón "Actualizar un producto"  -->
-            <Button
-                BackgroundColor="#E74C3C"
-                Clicked="OnUpdateProductClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Actualizar un producto"
-                TextColor="White" />
-
-            <!--  Botón "Eliminar un producto"  -->
-            <Button
-                BackgroundColor="#EC7063"
-                Clicked="OnDeleteProductClicked"
-                CornerRadius="25"
-                FontSize="16"
-                HeightRequest="50"
-                Text="Eliminar un producto"
-                TextColor="White" />
-
-
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    BackgroundColor="#EC7063"
+                    Clicked="OnDeleteProductClicked"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Text="Eliminar un producto"
+                    TextColor="White" />
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
