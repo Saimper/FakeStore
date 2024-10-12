@@ -3,41 +3,72 @@
     x:Class="FakeStore.Pages.ProductListPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="ProductListPage">
+    Title=""
+    BackgroundColor="#F5F5F5">
 
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="10" Spacing="15">
             <Label
                 FontAttributes="Bold"
-                FontSize="24"
+                FontSize="28"
                 HorizontalOptions="Center"
                 Text="Productos disponibles"
                 TextColor="#34495E" />
+
             <CollectionView x:Name="ProductsCollection">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10">
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="Medium"
-                                Text="{Binding title}" />
-                            <Label FontSize="Small" Text="{Binding description}" />
-                            <Label FontSize="Small" Text="{Binding category}" />
-                            <Image
-                                HeightRequest="100"
-                                Source="{Binding image}"
-                                WidthRequest="100" />
-                            <Label FontSize="Small" Text="{Binding price, StringFormat='Precio: {0:C}'}" />
-                            <Button
-                                Clicked="OnViewDetailsClicked"
-                                CommandParameter="{Binding .}"
-                                Text="Ver Detalles" />
-                        </StackLayout>
+                        <Frame BorderColor="#D6EAF8" CornerRadius="12" Padding="8" HasShadow="True" BackgroundColor="White" Margin="5">
+                            <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="Center">
+
+                                <Image
+                                    HeightRequest="110"
+                                    WidthRequest="110"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="Center"
+                                    Source="{Binding image}" />
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding title}"
+                                    TextColor="#5D6D7E"
+                                    HorizontalTextAlignment="Center"
+                                    MaxLines="1" />
+
+                                <Label
+                                    FontSize="Small"
+                                    Text="{Binding category}"
+                                    TextColor="#AAB7B8"
+                                    HorizontalTextAlignment="Center" />
+
+                                <Label
+                                    FontSize="Medium"
+                                    Text="{Binding price, StringFormat='Precio: {0:C}'}"
+                                    TextColor="#82E0AA"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="Center" />
+
+                                <Button
+                                    BackgroundColor="#AED6F1"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    Clicked="OnViewDetailsClicked"
+                                    CommandParameter="{Binding .}"
+                                    Text="Ver Detalles"
+                                    HeightRequest="40"
+                                    WidthRequest="200"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium" />
+                            </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
