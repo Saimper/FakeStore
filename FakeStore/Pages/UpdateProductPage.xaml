@@ -4,32 +4,46 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="UpdateProductPage">
-    <VerticalStackLayout>
-        <Label Text="Título" />
-        <Entry x:Name="ProductTitleEntry" />
 
-        <Label Text="Precio" />
-        <Entry x:Name="ProductPriceEntry" Keyboard="Numeric" />
 
-        <Label Text="Descripción" />
-        <Editor x:Name="ProductDescriptionEntry" />
 
-        <Label Text="Imagen URL" />
-        <Entry x:Name="ProductImageEntry" />
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Actualizar Producto" />
 
-        <Label Text="Categoría" />
-        <Picker x:Name="ProductCategoryPicker">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Electronics</x:String>
-                    <x:String>Jewelery</x:String>
-                    <x:String>Men's Clothing</x:String>
-                    <x:String>Women's Clothing</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+            <Label Text="ID:" />
+            <Entry x:Name="IdEntry" Placeholder="Ingrese el ID del producto" />
 
-        <Button Clicked="OnUpdateProductClicked" Text="Actualizar Producto" />
+            <Label Text="Título:" />
+            <Entry x:Name="TitleEntry" Placeholder="Ingrese el título" />
 
-    </VerticalStackLayout>
+            <Label Text="Precio:" />
+            <Entry x:Name="PriceEntry" Placeholder="Ingrese el precio" />
+
+            <Label Text="Descripción:" />
+            <Entry x:Name="DescriptionEntry" Placeholder="Ingrese la descripción" />
+
+            <Label FontAttributes="Bold" Text="Categoría" />
+            <Picker x:Name="ProductCategoryPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>electronic</x:String>
+                        <x:String>jewelery</x:String>
+                        <x:String>men's clothing</x:String>
+                        <x:String>women's clothing</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <Label Text="Imagen:" />
+            <Entry x:Name="ImageEntry" Placeholder="Ingrese la URL de la imagen" />
+
+            <Button Clicked="OnUpdateProductClicked" Text="Actualizar Producto" />
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>

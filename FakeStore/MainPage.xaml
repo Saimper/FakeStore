@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Densing #1 -->
+    <!--  Densing #1  -->
 
     <ScrollView>
         <VerticalStackLayout>
@@ -16,11 +16,10 @@
                 Text="Fake Store API"
                 TextColor="#2E86C1" />
 
-            <!-- Organización en dos columnas -->
-            <Grid ColumnDefinitions="*,*"
-                  RowDefinitions="Auto,Auto,Auto,Auto">
+            <!--  Organización en dos columnas  -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto">
 
-                <!-- Primera fila de botones -->
+                <!--  Primera fila de botones  -->
                 <Button
                     Grid.Row="0"
                     Grid.Column="0"
@@ -29,9 +28,9 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Ver todos los productos"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
                 <Button
                     Grid.Row="0"
@@ -41,11 +40,11 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Limitar resultados"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
-                <!-- Segunda fila de botones -->
+                <!--  Segunda fila de botones  -->
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
@@ -54,9 +53,9 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Ordenar resultados"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
                 <Button
                     Grid.Row="1"
@@ -66,11 +65,11 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Ver todas las categorías"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
-                <!-- Tercera fila de botones -->
+                <!--  Tercera fila de botones  -->
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
@@ -79,9 +78,9 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Productos por categoría"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
                 <Button
                     Grid.Row="2"
@@ -91,11 +90,11 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Añadir nuevo producto"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
-                <!-- Cuarta fila de botones -->
+                <!--  Cuarta fila de botones  -->
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
@@ -104,9 +103,9 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Actualizar un producto"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
 
                 <Button
                     Grid.Row="3"
@@ -116,9 +115,9 @@
                     CornerRadius="0"
                     FontSize="16"
                     HeightRequest="100"
-                    WidthRequest="100"
                     Text="Eliminar un producto"
-                    TextColor="White" />
+                    TextColor="White"
+                    WidthRequest="100" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

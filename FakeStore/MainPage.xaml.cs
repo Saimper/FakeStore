@@ -49,6 +49,7 @@ namespace FakeStore
         // Navega a la página para actualizar un producto
         private async void OnUpdateProductClicked(object sender, EventArgs e)
         {
+
             await Navigation.PushAsync(new UpdateProductPage());
         }
 

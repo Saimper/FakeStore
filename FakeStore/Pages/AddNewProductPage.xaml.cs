@@ -29,7 +29,7 @@ public partial class AddNewProductPage : ContentPage
         var newProduct = new ProductDto
         {
             title = ProductTitleEntry.Text,
-            price = double.Parse(ProductPriceEntry.Text),
+            price = decimal.Parse(ProductPriceEntry.Text),
             description = ProductDescriptionEntry.Text,
             image = ProductImageEntry.Text,
             category = ProductCategoryPicker.SelectedItem.ToString()
@@ -53,36 +53,31 @@ public partial class AddNewProductPage : ContentPage
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // Realizar la solicitud POST
+            
             var response = await _httpClient.PostAsync("https://fakestoreapi.com/products", content);
 
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode == System.Net.HttpStatusCode.Created || response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
                 var addedProduct = JsonSerializer.Deserialize<ProductDto>(responseBody);
 
-                await DisplayAlert("Éxito", "Producto agregado correctamente", "OK");
+              
+                await DisplayAlert("Éxito", $"Producto agregado correctamente con ID: {addedProduct.id}", "OK");
 
-                // Navegar de regreso a ProductListPage y actualizar la lista
-                var productListPage = Navigation.NavigationStack.OfType<ProductListPage>().FirstOrDefault();
-                if (productListPage != null)
-                {
-                    productListPage.Products.Add(addedProduct); 
-                    await productListPage.UpdateProductList(); 
-                }
-
-                await Navigation.PopAsync(); 
+               
+                await Navigation.PushAsync(new GetSingleProductPage(addedProduct));
             }
             else
             {
-                await DisplayAlert("Error", "No se pudo agregar el producto", "OK");
+                await DisplayAlert("Error", $"No se pudo agregar el producto. Código de respuesta: {(int)response.StatusCode}", "OK");
             }
         }
         catch (Exception ex)
         {
             await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
         }
-
-
     }
+
+
+
 }

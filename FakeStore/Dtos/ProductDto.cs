@@ -10,7 +10,7 @@ namespace FakeStore.Dtos
     {
         public int id { get; set; } // ID del producto (proporcionado por la API)
         public string title { get; set; } // Título del producto
-        public double price { get; set; } // Precio del producto
+        public decimal price { get; set; } // Precio del producto
         public string description { get; set; } // Descripción del producto
         public string category { get; set; } // Categoría del producto
         public string image { get; set; } // URL de la imagen del producto

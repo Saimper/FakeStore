@@ -36,7 +36,7 @@
             <Picker x:Name="ProductCategoryPicker">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>electronic</x:String>
+                        <x:String>electronics</x:String>
                         <x:String>jewelery</x:String>
                         <x:String>men's clothing</x:String>
                         <x:String>women's clothing</x:String>

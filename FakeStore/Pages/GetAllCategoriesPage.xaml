@@ -4,10 +4,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="GetAllCategoriesPage">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+
+
+    <StackLayout Padding="10">
+        <Label FontAttributes="Bold" Text="Categoría" />
+        <Picker x:Name="CategoryPicker" SelectedIndexChanged="OnCategorySelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>electronics</x:String>
+                    <x:String>jewelery</x:String>
+                    <x:String>men's clothing</x:String>
+                    <x:String>women's clothing</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+
+        <Button Clicked="OnGetProductsClicked" Text="Obtener Productos" />
+
+        <ListView x:Name="ProductsListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" Orientation="Horizontal">
+                            <Image
+                                HeightRequest="50"
+                                Source="{Binding image}"
+                                WidthRequest="50" />
+                            <StackLayout Padding="10,0" Orientation="Vertical">
+                                <Label FontAttributes="Bold" Text="{Binding title}" />
+                                <Label Text="{Binding price, StringFormat='Precio: {0:C}'}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

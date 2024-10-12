@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FakeStore.Pages.DeleteProductPage"
-             Title="DeleteProductPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FakeStore.Pages.DeleteProductPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DeleteProductPage">
+
+    <StackLayout Padding="20">
+        <Label
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Eliminar Producto" />
+
+        <Label Text="ID del Producto:" />
+        <Entry
+            x:Name="IdEntry"
+            Keyboard="Numeric"
+            Placeholder="Ingrese el ID del producto" />
+
+        <Button Clicked="OnDeleteProductClicked" Text="Eliminar Producto" />
+    </StackLayout>
 </ContentPage>
