@@ -1,20 +1,22 @@
 using System.Text.Json;
 using System.Text;
 using FakeStore.Dtos;
+using FakeStore.Services;
 
 namespace FakeStore.Pages;
 
 public partial class AddNewProductPage : ContentPage
+
+    //Para el profesor: Aquí solamente obtenemos los datos, y llamamos al servicio para consumir la API
 {
-    private HttpClient _httpClient = new HttpClient();
+    private readonly AddNewProductService _addNewProductService = new AddNewProductService();
+
     public AddNewProductPage()
 	{
 		InitializeComponent();
 	}
-
     private async void OnAddProductClicked(object sender, EventArgs e)
     {
-        // Verifica que todos los campos tengan valores válidos
         if (string.IsNullOrWhiteSpace(ProductTitleEntry.Text)
             || string.IsNullOrWhiteSpace(ProductPriceEntry.Text)
             || string.IsNullOrWhiteSpace(ProductDescriptionEntry.Text)
@@ -25,7 +27,6 @@ public partial class AddNewProductPage : ContentPage
             return;
         }
 
-        // Crear el nuevo producto a partir de los datos ingresados
         var newProduct = new ProductDto
         {
             title = ProductTitleEntry.Text,
@@ -35,42 +36,11 @@ public partial class AddNewProductPage : ContentPage
             category = ProductCategoryPicker.SelectedItem.ToString()
         };
 
-        await AddProductAsync(newProduct);
-    }
-
-    private async Task AddProductAsync(ProductDto product)
-    {
         try
         {
-            var json = JsonSerializer.Serialize(new
-            {
-                title = product.title,
-                price = product.price,
-                description = product.description,
-                image = product.image,
-                category = product.category
-            });
-
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            
-            var response = await _httpClient.PostAsync("https://fakestoreapi.com/products", content);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.Created || response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                var addedProduct = JsonSerializer.Deserialize<ProductDto>(responseBody);
-
-              
-                await DisplayAlert("Éxito", $"Producto agregado correctamente con ID: {addedProduct.id}", "OK");
-
-               
-                await Navigation.PushAsync(new GetSingleProductPage(addedProduct));
-            }
-            else
-            {
-                await DisplayAlert("Error", $"No se pudo agregar el producto. Código de respuesta: {(int)response.StatusCode}", "OK");
-            }
+            var addedProduct = await _addNewProductService.AddProductAsync(newProduct);
+            await DisplayAlert("Éxito", $"Producto agregado correctamente con ID: {addedProduct.id}", "OK");
+            await Navigation.PushAsync(new GetSingleProductPage(addedProduct));
         }
         catch (Exception ex)
         {
@@ -78,6 +48,8 @@ public partial class AddNewProductPage : ContentPage
         }
     }
 
-
-
 }
+
+
+
+

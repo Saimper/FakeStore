@@ -2,26 +2,23 @@ using FakeStore.Dtos;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Diagnostics;
+using FakeStore.Services;
 
 namespace FakeStore.Pages;
 
 public partial class ProductListPage : ContentPage
 {
 
-    private HttpClient _httpClient = new HttpClient();
-    public ObservableCollection<ProductDto> Products { get; set; } = new ObservableCollection<ProductDto>(); // Usa ProductDto aquí
+    private readonly ProductListService _productListService = new ProductListService();
+    public ObservableCollection<ProductDto> Products { get; set; } = new ObservableCollection<ProductDto>();
 
     public ProductListPage()
 	{
 		InitializeComponent();
-        ProductsCollection.ItemsSource = Products; // Asegúrate de que este nombre coincida con el del XAML
+        ProductsCollection.ItemsSource = Products; 
         GetProductsAsync();
     }
-    public async Task UpdateProductList()
-    {
-        ProductsCollection.ItemsSource = null;
-        ProductsCollection.ItemsSource = Products;
-    }
+   
 
     protected override async void OnAppearing()
     {
@@ -31,26 +28,14 @@ public partial class ProductListPage : ContentPage
 
     private async Task GetProductsAsync()
     {
-
         try
         {
             Products.Clear();
 
-            var response = await _httpClient.GetStringAsync("https://fakestoreapi.com/products");
-            var products = JsonSerializer.Deserialize<List<ProductDto>>(response); // Usa ProductDto para deserializar
-
-            // Verifica si la lista de productos no es nula y cuántos se han deserializado
-            if (products != null)
+            var products = await _productListService.GetProductsAsync();
+            foreach (var product in products)
             {
-               
-                foreach (var product in products)
-                {
-                    Products.Add(product); // Agrega cada producto al ObservableCollection
-                }
-            }
-            else
-            {
-                await DisplayAlert("Error", "No se pudieron deserializar los productos.", "OK");
+                Products.Add(product);
             }
         }
         catch (Exception ex)
@@ -58,7 +43,7 @@ public partial class ProductListPage : ContentPage
             await DisplayAlert("Error", $"No se pudo obtener los productos: {ex.Message}", "OK");
         }
 
-       
+
     }
     private async void OnViewDetailsClicked(object sender, EventArgs e)
     {
@@ -67,7 +52,6 @@ public partial class ProductListPage : ContentPage
 
         if (selectedProduct != null)
         {
-            // Navega a la página de detalles con el producto seleccionado
             await Navigation.PushAsync(new GetSingleProductPage(selectedProduct));
         }
     }

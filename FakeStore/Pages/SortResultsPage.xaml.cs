@@ -1,4 +1,5 @@
 using FakeStore.Dtos;
+using FakeStore.Services;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 
@@ -7,18 +8,17 @@ namespace FakeStore.Pages;
 public partial class SortResultsPage : ContentPage
 {
 
-    private HttpClient _httpClient = new HttpClient();
+    private readonly SortResultsService _sortResultsService = new SortResultsService();
     public ObservableCollection<ProductDto> SortedProducts { get; set; } = new ObservableCollection<ProductDto>();
 
-
     public SortResultsPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         SortedProductsCollection.ItemsSource = SortedProducts;
     }
+
     private async void OnGetSortedProductsClicked(object sender, EventArgs e)
     {
-        // Obtener el valor seleccionado en el Picker
         var selectedSortOption = SortPicker.SelectedItem as string;
 
         if (selectedSortOption != null)
@@ -35,32 +35,9 @@ public partial class SortResultsPage : ContentPage
     {
         try
         {
-            // Construir la URL para la API con el parámetro de orden
-            // Realizar la solicitud GET para obtener todos los productos
-            var response = await _httpClient.GetStringAsync("https://fakestoreapi.com/products");
-            var products = JsonSerializer.Deserialize<List<ProductDto>>(response);
-
-            // Filtrar productos según la opción seleccionada
-            switch (sortParam)
-            {
-                case "Precio Ascendente":
-                    products = products.OrderBy(p => p.price).ToList();
-                    break;
-                case "Precio Descendente":
-                    products = products.OrderByDescending(p => p.price).ToList();
-                    break;
-                case "Alfabéticamente A-Z":
-                    products = products.OrderBy(p => p.title).ToList();
-                    break;
-                case "Alfabéticamente Z-A":
-                    products = products.OrderByDescending(p => p.title).ToList();
-                    break;
-                default:
-                    break;
-            }
-
-            // Limpiar la lista antes de agregar los productos ordenados
             SortedProducts.Clear();
+
+            var products = await _sortResultsService.GetSortedProductsAsync(sortParam);
             foreach (var product in products)
             {
                 SortedProducts.Add(product);

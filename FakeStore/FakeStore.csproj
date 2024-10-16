@@ -89,8 +89,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Servicios\" />
-	</ItemGroup>
-
 </Project>

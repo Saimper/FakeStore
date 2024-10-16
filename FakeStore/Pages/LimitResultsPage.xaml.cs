@@ -1,4 +1,5 @@
 using FakeStore.Dtos;
+using FakeStore.Services;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 
@@ -7,7 +8,7 @@ namespace FakeStore.Pages;
 public partial class LimitResultsPage : ContentPage
 {
 
-    private HttpClient _httpClient = new HttpClient();
+    private readonly LimitResultsService _limitResultsService = new LimitResultsService();
     public ObservableCollection<ProductDto> LimitedProducts { get; set; } = new ObservableCollection<ProductDto>();
 
     public LimitResultsPage()
@@ -24,23 +25,20 @@ public partial class LimitResultsPage : ContentPage
         // Verificar si el valor es un número válido
         if (int.TryParse(limitText, out int limit) && limit > 0)
         {
-            await GetLimitedProductsAsync(limit);
+            await LoadLimitedProductsAsync(limit);
         }
         else
         {
             await DisplayAlert("Error", "Introduce un número válido", "OK");
         }
     }
-
-    private async Task GetLimitedProductsAsync(int limit)
+    private async Task LoadLimitedProductsAsync(int limit)
     {
         try
         {
-            // Construir la URL para la API con el límite de productos
-            var response = await _httpClient.GetStringAsync($"https://fakestoreapi.com/products?limit={limit}");
-            var products = JsonSerializer.Deserialize<List<ProductDto>>(response);
+            var products = await _limitResultsService.GetLimitedProductsAsync(limit);
 
-            // Limpiar la lista antes de agregar nuevos productos
+            // Limpiar la lista antes de agregar los nuevos productos
             LimitedProducts.Clear();
             foreach (var product in products)
             {
@@ -52,4 +50,6 @@ public partial class LimitResultsPage : ContentPage
             await DisplayAlert("Error", $"No se pudo obtener los productos: {ex.Message}", "OK");
         }
     }
+
+
 }

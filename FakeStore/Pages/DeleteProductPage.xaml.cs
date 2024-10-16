@@ -1,47 +1,42 @@
 using FakeStore.Dtos;
+using FakeStore.Services;
 
 namespace FakeStore.Pages;
 
 public partial class DeleteProductPage : ContentPage
 {
-    private readonly HttpClient _httpClient;
+    private readonly DeleteProductService _deleteProductService = new DeleteProductService();
+
+
     public DeleteProductPage()
     {
         InitializeComponent();
-        _httpClient = new HttpClient();
+        
     }
     private async void OnDeleteProductClicked(object sender, EventArgs e)
     {
         if (int.TryParse(IdEntry.Text, out int productId))
         {
-            await DeleteProductAsync(productId);
+            bool confirm = await DisplayAlert("Confirmación", "¿Está seguro de que desea eliminar este producto?", "Sí", "No");
+            if (!confirm)
+                return;
+
+            try
+            {
+                await _deleteProductService.DeleteProductAsync(productId);
+                await DisplayAlert("Éxito", $"Producto con ID: {productId} eliminado correctamente.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Ocurrió un error al eliminar el producto: {ex.Message}", "OK");
+            }
         }
         else
         {
-            await DisplayAlert("Error", "ID del producto no es válido.", "OK");
+            await DisplayAlert("Error", "Por favor, ingrese un ID de producto válido.", "OK");
         }
+
     }
 
-    private async Task DeleteProductAsync(int productId)
-    {
-        try
-        {
-           
-            var response = await _httpClient.DeleteAsync($"https://fakestoreapi.com/products/{productId}");
-
-           
-            if (response.IsSuccessStatusCode)
-            {
-                await DisplayAlert("Éxito", "Producto eliminado correctamente.", "OK");
-            }
-            else
-            {
-                await DisplayAlert("Error", $"No se pudo eliminar el producto. Código de respuesta: {(int)response.StatusCode}", "OK");
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
-        }
+  
     }
-}

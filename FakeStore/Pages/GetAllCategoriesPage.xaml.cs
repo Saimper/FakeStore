@@ -1,26 +1,35 @@
 using FakeStore.Dtos;
+using FakeStore.Services;
 using System.Text.Json;
 
 namespace FakeStore.Pages;
 
 public partial class GetAllCategoriesPage : ContentPage
 {
-    private readonly HttpClient _httpClient;
+    private readonly GetAllCategoriesService _getAllCategoriesService = new GetAllCategoriesService();
+
 
     public GetAllCategoriesPage()
     {
         InitializeComponent();
-        _httpClient = new HttpClient();
+        LoadCategoriesAsync();
     }
 
-    // Manejador del evento SelectedIndexChanged para el Picker
-    private void OnCategorySelectedIndexChanged(object sender, EventArgs e)
+    
+    private async void LoadCategoriesAsync()
     {
+        try
+        {
+            var categories = await _getAllCategoriesService.GetAllCategoriesAsync();
+            CategoryPicker.ItemsSource = categories;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Ocurrió un error al cargar las categorías: {ex.Message}", "OK");
+        }
     }
-
     private async void OnGetProductsClicked(object sender, EventArgs e)
     {
-        // Obtener la categoría seleccionada
         var selectedCategory = CategoryPicker.SelectedItem?.ToString();
         if (string.IsNullOrEmpty(selectedCategory))
         {
@@ -28,25 +37,14 @@ public partial class GetAllCategoriesPage : ContentPage
             return;
         }
 
-        
-        var products = await GetProductsByCategoryAsync(selectedCategory);
-        ProductsListView.ItemsSource = products;
-    }
-
-    private async Task<List<ProductDto>> GetProductsByCategoryAsync(string category)
-    {
         try
         {
-            var response = await _httpClient.GetAsync($"https://fakestoreapi.com/products/category/{category}");
-            response.EnsureSuccessStatusCode();
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var products = JsonSerializer.Deserialize<List<ProductDto>>(responseBody);
-            return products ?? new List<ProductDto>();
+            var products = await _getAllCategoriesService.GetProductsByCategoryAsync(selectedCategory);
+            ProductsListView.ItemsSource = products;
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
-            return new List<ProductDto>();
+            await DisplayAlert("Error", $"Ocurrió un error al obtener los productos: {ex.Message}", "OK");
         }
     }
 
