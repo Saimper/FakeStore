@@ -14,6 +14,7 @@ namespace FakeStore.Dtos
         public string description { get; set; } // Descripción del producto
         public string category { get; set; } // Categoría del producto
         public string image { get; set; } // URL de la imagen del producto
+     
 
         // Este es un objeto que contiene la calificación y el número de calificaciones
         public Rating rating { get; set; }

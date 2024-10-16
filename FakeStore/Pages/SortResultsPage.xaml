@@ -21,8 +21,10 @@
             <Picker x:Name="SortPicker" Title="Selecciona un tipo de orden">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Descendente por Precio</x:String>
-                        <x:String>Ascendente por Precio</x:String>
+                        <x:String>Precio Ascendente</x:String>
+                        <x:String>Precio Descendente</x:String>
+                        <x:String>Alfabéticamente A-Z</x:String>
+                        <x:String>Alfabéticamente Z-A</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>

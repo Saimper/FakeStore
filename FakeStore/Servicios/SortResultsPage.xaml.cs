@@ -23,8 +23,7 @@ public partial class SortResultsPage : ContentPage
 
         if (selectedSortOption != null)
         {
-            string sortParam = selectedSortOption.Contains("Ascendente") ? "asc" : "desc";
-            await GetSortedProductsAsync(sortParam);
+            await GetSortedProductsAsync(selectedSortOption);
         }
         else
         {
@@ -37,10 +36,30 @@ public partial class SortResultsPage : ContentPage
         try
         {
             // Construir la URL para la API con el parámetro de orden
-            var response = await _httpClient.GetStringAsync($"https://fakestoreapi.com/products?sort={sortParam}");
+            // Realizar la solicitud GET para obtener todos los productos
+            var response = await _httpClient.GetStringAsync("https://fakestoreapi.com/products");
             var products = JsonSerializer.Deserialize<List<ProductDto>>(response);
 
-            // Limpiar la lista antes de agregar nuevos productos
+            // Filtrar productos según la opción seleccionada
+            switch (sortParam)
+            {
+                case "Precio Ascendente":
+                    products = products.OrderBy(p => p.price).ToList();
+                    break;
+                case "Precio Descendente":
+                    products = products.OrderByDescending(p => p.price).ToList();
+                    break;
+                case "Alfabéticamente A-Z":
+                    products = products.OrderBy(p => p.title).ToList();
+                    break;
+                case "Alfabéticamente Z-A":
+                    products = products.OrderByDescending(p => p.title).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            // Limpiar la lista antes de agregar los productos ordenados
             SortedProducts.Clear();
             foreach (var product in products)
             {
