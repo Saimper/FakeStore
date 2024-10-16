@@ -19,10 +19,10 @@ public partial class LimitResultsPage : ContentPage
 
     private async void OnGetLimitedProductsClicked(object sender, EventArgs e)
     {
-        // Obtener el valor introducido en la Entry
+        
         var limitText = LimitEntry.Text;
 
-        // Verificar si el valor es un número válido
+        
         if (int.TryParse(limitText, out int limit) && limit > 0)
         {
             await LoadLimitedProductsAsync(limit);
@@ -38,7 +38,7 @@ public partial class LimitResultsPage : ContentPage
         {
             var products = await _limitResultsService.GetLimitedProductsAsync(limit);
 
-            // Limpiar la lista antes de agregar los nuevos productos
+         
             LimitedProducts.Clear();
             foreach (var product in products)
             {

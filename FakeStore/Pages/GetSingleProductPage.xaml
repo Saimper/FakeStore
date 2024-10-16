@@ -8,7 +8,7 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <!--  Definir los controles con los nombres correctos  -->
+            
             <Image x:Name="ProductImage" HeightRequest="200" />
             <Label
                 x:Name="ProductTitle"
