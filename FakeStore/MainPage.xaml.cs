@@ -34,11 +34,6 @@ namespace FakeStore
             await Navigation.PushAsync(new GetAllCategoriesPage());
         }
 
-        // Navega a la página que muestra productos por categoría
-        private async void OnGetProductsInCategoryClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new GetProductsInCategoryPage());
-        }
 
         // Navega a la página para añadir un nuevo producto
         private async void OnAddNewProductClicked(object sender, EventArgs e)

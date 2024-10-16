@@ -8,10 +8,10 @@
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="15">
             <Label
+                Text="Fake Store API"
                 FontAttributes="Bold"
                 FontSize="32"
                 HorizontalOptions="Center"
-                Text="Fake Store API"
                 TextColor="#2E86C1" />
 
             <Grid ColumnDefinitions="*,*"
@@ -57,35 +57,28 @@
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
-                    BackgroundColor="#AF7AC5"
-                    Clicked="OnGetProductsInCategoryClicked"
-                    Text="Productos por categoría"
+                    BackgroundColor="#F1948A"
+                    Clicked="OnAddNewProductClicked"
+                    Text="Añadir nuevo producto"
                     TextColor="White" />
 
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
-                    BackgroundColor="#F1948A"
-                    Clicked="OnAddNewProductClicked"
-                    Text="Añadir nuevo producto"
+                    BackgroundColor="#AA2AC5"
+                    Clicked="OnUpdateProductClicked"
+                    Text="Actualizar un producto"
                     TextColor="White" />
 
                 <!-- Cuarta fila -->
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
-                    BackgroundColor="#AA2AC5"
-                    Clicked="OnUpdateProductClicked"
-                    Text="Actualizar un producto"
-                    TextColor="White" />
-
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="1"
                     BackgroundColor="#E74C3C"
                     Clicked="OnDeleteProductClicked"
                     Text="Eliminar un producto"
                     TextColor="White" />
+
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
