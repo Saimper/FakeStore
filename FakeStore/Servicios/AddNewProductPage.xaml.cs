@@ -15,11 +15,11 @@ public partial class AddNewProductPage : ContentPage
     private async void OnAddProductClicked(object sender, EventArgs e)
     {
         // Verifica que todos los campos tengan valores válidos
-        if (string.IsNullOrWhiteSpace(ProductTitleEntry.Text) ||
-            string.IsNullOrWhiteSpace(ProductPriceEntry.Text) ||
-            string.IsNullOrWhiteSpace(ProductDescriptionEntry.Text) ||
-            string.IsNullOrWhiteSpace(ProductImageEntry.Text) ||
-            ProductCategoryPicker.SelectedIndex == -1)
+        if (string.IsNullOrWhiteSpace(ProductTitleEntry.Text)
+            || string.IsNullOrWhiteSpace(ProductPriceEntry.Text)
+            || string.IsNullOrWhiteSpace(ProductDescriptionEntry.Text)
+            || string.IsNullOrWhiteSpace(ProductImageEntry.Text)
+            || ProductCategoryPicker.SelectedIndex == -1)
         {
             await DisplayAlert("Error", "Por favor, rellene todos los campos.", "OK");
             return;
